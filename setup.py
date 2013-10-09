@@ -4,7 +4,7 @@ from setuptools import setup
 
 setup(
     name='dj-queryset-manager',
-    version='0.1.0-alpha',
+    version='0.1.0',
     url='https://github.com/nosamanuel/dj-queryset-manager',
     license=open('LICENSE').read(),
     author='Noah Seger',
