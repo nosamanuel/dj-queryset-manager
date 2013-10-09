@@ -30,7 +30,7 @@ For reference, here is a standard implementation:
         def by_slug(self, slug):
             return self.filter(slug=slug)
 
-    class MyManager(QuerySetManager):
+    class MyManager(Manager):
         def get_query_set(self): # Better remember the arguments to QuerySet
             QuerySet(self.model, using=self._db)
 
