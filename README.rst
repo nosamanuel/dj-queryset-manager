@@ -4,6 +4,13 @@ dj-queryset-manager
 A Django utility that makes it simple to write DRY queryset methods.
 
 
+Warning
+-------
+
+This project has been superceded by ``QuerySet.as_manager()``. See `the docs <https://docs.djangoproject.com/en/dev/ref/models/querysets/#django.db.models.query.QuerySet.as_manager>`_.
+
+
+
 Usage
 -----
 
