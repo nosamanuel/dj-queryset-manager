@@ -1,8 +1,8 @@
 test: .env/requirements.lock
-	.env/bin/nosetests --with-coverage --cover-package=dj_queryset_manager
+	.env/bin/tox
 
 .env/requirements.lock: .env
-	.env/bin/pip install nose coverage Django
+	.env/bin/pip install tox
 	.env/bin/pip freeze > .env/requirements.lock
 
 .env:
