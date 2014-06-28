@@ -8,7 +8,7 @@ setup(
     url='https://github.com/nosamanuel/dj-queryset-manager',
     license=open('LICENSE').read(),
     author='Noah Seger',
-    author_email='nosamanuel@gmail.com.com',
+    author_email='nosamanuel@gmail.com',
     description='Stop writing Django querysets.',
     long_description=open('README.rst').read(),
     py_modules=['dj_queryset_manager'],

@@ -33,7 +33,7 @@ class QuerySetManagerMixin(object):
         try:
             queryset = super(QuerySetManagerMixin, self).get_query_set()
         except AttributeError:
-            # Manager.get_query_set was depricated in 1.6
+            # Manager.get_query_set was deprecated in 1.6
             queryset = super(QuerySetManagerMixin, self).get_queryset()
         queryset_class = self._get_queryset_class(queryset)
         return queryset._clone(klass=queryset_class)
@@ -63,7 +63,7 @@ class QuerySetManagerMixin(object):
         for name, method in self._get_queryset_method_attributes():
             setattr(queryset_class, name, method)
 
-        # Cache the queryset class so that ever queryset produced by
+        # Cache the queryset class so that every queryset produced by
         # this manager is an instance of the same class
         setattr(self, QUERYSET_CLASS, queryset_class)
         return queryset_class
