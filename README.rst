@@ -26,6 +26,11 @@ Usage
         def by_slug(queryset, slug):
             return queryset.filter(slug=slug)
 
+        @queryset_method
+        def filter(queryset, *args, **kwargs):
+            return super(type(queryset), queryset).filter(*args, **kwargs)
+
+
 For reference, here is a standard implementation:
 
 .. code:: python
@@ -36,6 +41,10 @@ For reference, here is a standard implementation:
     class MyQuerySet(QuerySet):
         def by_slug(self, slug):
             return self.filter(slug=slug)
+
+        def filter(self, *args, **kwargs):
+            return super(MyQuerySet, self).filter(*args, **kwargs)
+
 
     class MyManager(Manager):
         def get_query_set(self): # Better remember the arguments to QuerySet

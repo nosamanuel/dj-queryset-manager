@@ -60,8 +60,6 @@ class QuerySetManagerMixin(object):
         queryset_class_name = self._get_queryset_class_name()
         queryset_class = type(queryset_class_name, (type(queryset),), {})
         for name, method in self._get_queryset_method_attributes():
-            if hasattr(queryset_class, name):
-                raise AttributeError("Attribute '%s' already exists" % name)
             setattr(queryset_class, name, method)
 
         # Cache the queryset class so that ever queryset produced by

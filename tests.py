@@ -17,14 +17,12 @@ class SlugManager(QuerySetManager):
     use_for_related_fields = False
 
 
-class AttributeErrorManager(QuerySetManager):
+class AttributeOverrideManager(QuerySetManager):
     @queryset_method
-    def filter(queryset, **kwargs):
-        """
-        The `filter` method overwrites `QuerySet.filter` and should
-        cause an attribute error when the queryset class is constructed.
-        """
-        pass
+    def filter(queryset, *args, **kwargs):
+        queryset = super(type(queryset), queryset).filter(**kwargs)
+        queryset.exists = lambda: False
+        return queryset
 
 
 class TestModel(models.Model):
@@ -62,8 +60,9 @@ class QuerySetManagerTestCase(unittest.TestCase):
         self.assertTrue(isinstance(manager.get_query_set(), queryset_class))
 
     def test_existing_attribute(self):
-        manager = AttributeErrorManager()
-        self.assertRaises(AttributeError, manager.get_queryset)
+        manager = AttributeOverrideManager()
+        queryset = manager.filter()
+        self.assertFalse(queryset.exists())
 
     def test_wrapped_method(self):
         manager = SlugManager()
