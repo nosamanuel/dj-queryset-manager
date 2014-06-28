@@ -2,7 +2,6 @@
 from functools import wraps
 
 from django.db import models
-from django.db.models.query import QuerySet
 
 
 QUERYSET_CLASS = '_queryset_class'
