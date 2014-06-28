@@ -59,6 +59,7 @@ class QuerySetManagerMixin(object):
         # as queryset methods
         queryset_class_name = self._get_queryset_class_name()
         queryset_class = type(queryset_class_name, (type(queryset),), {})
+        queryset_class.__module__ = self.__module__
         for name, method in self._get_queryset_method_attributes():
             setattr(queryset_class, name, method)
 

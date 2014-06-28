@@ -8,6 +8,9 @@ from dj_queryset_manager import QuerySetManager
 from dj_queryset_manager import queryset_method, QUERYSET_METHOD
 
 
+TEST_MODULE = __name__
+
+
 def by_slug(queryset, slug, **kwargs):
         raise NotImplementedError
 
@@ -67,6 +70,11 @@ class QuerySetManagerTestCase(unittest.TestCase):
     def test_wrapped_method(self):
         manager = SlugManager()
         self.assertRaises(NotImplementedError, manager.by_slug, slug='foo')
+
+    def test_queryset_module(self):
+        manager = SlugManager()
+        queryset = manager.get_queryset()
+        self.assertEqual(queryset.__module__, TEST_MODULE)
 
 
 class RelatedManagerTestCase(unittest.TestCase):
